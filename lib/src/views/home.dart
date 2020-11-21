@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:rc_cross_platform/rc_cross_platform.dart';
@@ -25,31 +26,67 @@ class _MyHomePageState extends State<MyHomePage> {
     final platform = Provider.of<Platform>(context, listen: false);
     final counterStore = Provider.of<CounterStore>(context, listen: false);
     return Scaffold(
+      backgroundColor: Colors.amberAccent,
       appBar: AppBar(
         title: Text(widget.title),
         automaticallyImplyLeading: false,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text('The app is running on : ${platform.platformName}'),
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Observer(
-              builder: (c) => Text(
-                '${counterStore.counter}',
-                style: Theme.of(context).textTheme.display1,
+      body: SafeArea(
+        child: Container(
+          height: MediaQuery.of(context).size.height - 85,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(35),
+                bottomRight: Radius.circular(35),
+            )
+          ),
+          child: ListView(
+            padding: const EdgeInsets.all(10.0),
+
+            children: <Widget>[
+              Container(
+                child: ListTile(
+                  title: Text(
+                      'Шум воды из-под крана',
+                      style: TextStyle(
+                          fontFamily: 'Nexa',
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                      ),
+                  ),
+                  subtitle:
+                  Text(
+                      'Замаскируй звуки шумом воды',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: 'Nexa',
+                        color: Colors.black,
+                    ),
+
+                  ),
+                  trailing: Icon(Icons.panorama_horizontal,
+                    color: Colors.black,),
+                ),
               ),
-            ),
+              Container(
+                padding: const EdgeInsets.only(top: 50.0, left: 40.0,) ,
+                child: Text(
+                    'Возможности приложения',
+                  style: TextStyle(fontSize: 20.0, color: Colors.black),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top:20.0, left: 5.0,),
+                  child: Text(
+                      'Список Возможностей',
+                    style: TextStyle(fontSize: 20.0, color: Colors.black),
+                  ),
+              ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ),
     );
   }

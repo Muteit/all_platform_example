@@ -35,9 +35,11 @@ class StashallApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'All platform example',
+      title: 'Mute it Application',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        brightness: Brightness.dark,
+        primarySwatch: Colors.amber,
+        backgroundColor: Colors.black,
       ),
       home: LoadingView(),
       onGenerateRoute: (routeSettings) {
@@ -45,7 +47,7 @@ class StashallApp extends StatelessWidget {
           settings: routeSettings,
           pageBuilder: (c, _, __) {
             return MyHomePage(
-              title: 'All platform example',
+              title: 'Mute it Application',
             );
           },
         );
